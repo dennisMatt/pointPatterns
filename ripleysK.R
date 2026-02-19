@@ -95,3 +95,17 @@ dummyPointsUnif <- ppp(x = x, y = y, window = square(200))
 #inspect
 plot(dummyPointsUnif)
 
+
+
+#run the function on the uniform ppp
+dummyK_Unif=lapply(r,FUN=funRipley,points=dummyPointsUnif)
+
+
+#collect results
+kResultsUnif=do.call("rbind",dummyK_Unif)
+
+#plot
+ggplot(kResultsUnif)+geom_line(aes(x=radius,y=crsK),col="red")+geom_line(aes(x=radius,y=empK),col="black")
+
+
+
