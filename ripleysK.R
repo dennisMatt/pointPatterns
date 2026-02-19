@@ -70,3 +70,17 @@ funRipley=function(x,points){
   
 }
 
+
+
+#Run function
+dummyK=lapply(r,FUN=funRipley,points=dummyPoints)
+
+
+#Collect results together
+kResults=do.call("rbind",dummyK)
+
+#plot with ggplot
+ggplot(kResults)+geom_line(aes(x=radius,y=crsK),col="red")+geom_line(aes(x=radius,y=empK),col="black")
+
+
+
