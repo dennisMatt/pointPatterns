@@ -83,4 +83,15 @@ kResults=do.call("rbind",dummyK)
 ggplot(kResults)+geom_line(aes(x=radius,y=crsK),col="red")+geom_line(aes(x=radius,y=empK),col="black")
 
 
+#====================Build uniform point pattern
+
+set.seed(11)
+x <- runif(100, 1, 200)
+y <- runif(100, 1, 200)
+
+#build uniform ppp
+dummyPointsUnif <- ppp(x = x, y = y, window = square(200))
+
+#inspect
+plot(dummyPointsUnif)
 
