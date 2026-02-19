@@ -54,7 +54,7 @@ funRipley=function(x,points){
     numPoints=nrow(st_as_sf(points)[buff.i,])-1
     
     #K value 
-    k=e.i/I
+    k=numPoints/I
     
     #add theoretical K to the list
     csrList[[i]]=csrK
