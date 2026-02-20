@@ -17,11 +17,11 @@ x <- rnorm(100, 100, 30)
 y <- rnorm(100, 100, 30)
 
 #create point pattern within a 200 by 200 unit square
-dummyPoints <- ppp(x = x, y = y, window = square(200))
+dummyPointsCluster <- ppp(x = x, y = y, window = square(200))
 
 #plot
-plot(dummyPoints)
-points=dummyPoints
+plot(dummyPointsCluster)
+
 
 #create series of radii
 r=1:100
@@ -73,14 +73,15 @@ funRipley=function(x,points){
 
 
 #Run function
-dummyK=lapply(r,FUN=funRipley,points=dummyPoints)
+dummyK_Cluster=lapply(r,FUN=funRipley,points=dummyPointsCluster)
 
 
 #Collect results together
-kResults=do.call("rbind",dummyK)
+kResults_Cluster=do.call("rbind",dummyK_Cluster)
 
 #plot with ggplot
-ggplot(kResults)+geom_line(aes(x=radius,y=crsK),col="red")+geom_line(aes(x=radius,y=empK),col="black")
+ggplot(kResults_Cluster)+geom_line(aes(x=radius,y=crsK),col="red")+geom_line(aes(x=radius,y=empK),col="black")+
+  xlab("Radius")+ylab("K(r)")
 
 
 #====================Build uniform point pattern
@@ -105,7 +106,8 @@ dummyK_Unif=lapply(r,FUN=funRipley,points=dummyPointsUnif)
 kResultsUnif=do.call("rbind",dummyK_Unif)
 
 #plot
-ggplot(kResultsUnif)+geom_line(aes(x=radius,y=crsK),col="red")+geom_line(aes(x=radius,y=empK),col="black")
+ggplot(kResultsUnif)+geom_line(aes(x=radius,y=crsK),col="red")+geom_line(aes(x=radius,y=empK),col="black")+
+  xlab("Radius")+ylab("K(r)")
 
 
 
